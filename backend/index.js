@@ -19,9 +19,9 @@ const mongoURI = process.env.MONGO_URI;
       useNewUrlParser: true,
       useUnifiedTopology: true
     });
-    console.log('✅ Conectado ao MongoDB com sucesso!');
+    console.log('Conectado ao MongoDB com sucesso!');
   } catch (error) {
-    console.error('❌ Erro ao conectar no MongoDB:', error.message);
+    console.error('Erro ao conectar no MongoDB:', error.message);
   }
 })();
 
@@ -51,7 +51,7 @@ app.get('/pets', async (req, res) => {
 
 app.post('/pets', upload.single('photo'), async (req, res) => {
   const { name, description, latitude, longitude, emPerigo } = req.body;
-  const photo = req.file ? req.file.path : null;
+  const photo = req.file ? req.file.path.replace(/\\/g, "/") : null;
   const pet = new Pet({
     name,
     description,
