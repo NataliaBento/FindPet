@@ -36,7 +36,8 @@ npm install
 Crie um arquivo `.env` com sua string de conexão do MongoDB:
 
 ```
-MONGO_URI=mongodb+srv://seu-usuario:sua-senha@seubanco.mongodb.net/?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://<usuario>:<senha>@seubanco.mongodb.net/
+
 ```
 
 Inicie o backend:
