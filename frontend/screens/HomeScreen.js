@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, Image, Text } from 'react-native';
-import { FAB, Card, Title, Paragraph } from 'react-native-paper';
+import { FAB, Card, Title, Paragraph, Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../styles/styles';
 
-const API_URL = 'http://192.168.20.68:3000'; // certifique-se que está com o IP correto
+const API_URL = 'http://192.168.20.68:3000'; 
 
 export default function HomeScreen() {
   const [pets, setPets] = useState([]);
@@ -26,7 +26,7 @@ export default function HomeScreen() {
         data={pets}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => (
-          <Card style={styles.card}>
+          <Card style={[styles.card, { backgroundColor: '#f9f9f9', borderWidth: 1, borderColor: '#ddd' }]}>
             <Card.Content>
               <Title>{item.name}</Title>
               <Paragraph>{item.description}</Paragraph>
@@ -40,9 +40,22 @@ export default function HomeScreen() {
                 style={styles.image}
               />
             )}
+            <Card.Actions style={{ justifyContent: 'flex-end', paddingHorizontal: 8 }}>
+              <Button
+                mode="contained-tonal"
+                icon="eye"
+                onPress={() => navigation.navigate('Detalhes', { pet: item })}
+                compact
+                style={{ backgroundColor: '#9381ff' }}
+                textColor="#fff"
+              >
+                Ver Detalhes
+              </Button>
+            </Card.Actions>
           </Card>
         )}
       />
+
       <View style={{ position: 'absolute', bottom: 20, left: 20, alignItems: 'center' }}>
         <FAB
           icon="map"
