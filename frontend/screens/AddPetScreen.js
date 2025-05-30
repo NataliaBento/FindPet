@@ -5,7 +5,7 @@ import * as Location from 'expo-location';
 import * as ImagePicker from 'expo-image-picker';
 import styles from '../styles/styles';
 
-const API_URL = 'http://192.168.20.69:3000';
+const API_URL = 'http://192.168.20.68:3000';
 
 
 
@@ -72,6 +72,7 @@ export default function AddPetScreen({ navigation }) {
           'Content-Type': 'multipart/form-data',
         },
       });
+      Alert.alert('Animal registrado com sucesso')
       navigation.navigate('Home');
     } catch (error) {
       Alert.alert('Erro ao registrar animal', error.message);
@@ -98,7 +99,7 @@ export default function AddPetScreen({ navigation }) {
       <Text>O animal está em perigo?</Text>
       <Switch value={emPerigo} onValueChange={() => setEmPerigo(!emPerigo)} />
 
-      <Button mode="outlined" onPress={pickImage} style={styles.input} icon="camera">
+      <Button mode="outlined" onPress={pickImage} style={[styles.input, {backgroundColor: '#9381ff'}]} icon="camera" textColor='#fff'>
         Tirar Foto
       </Button>
 
@@ -109,7 +110,7 @@ export default function AddPetScreen({ navigation }) {
         />
       )}
 
-      <Button mode="contained" onPress={handleSubmit}>
+      <Button mode="contained" onPress={handleSubmit} style={{backgroundColor: '#ff6f61', marginTop: 10}} textColor='#fff'>
         Registrar Animal Perdido
       </Button>
     </View>

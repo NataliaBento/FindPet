@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, Image } from 'react-native';
+import { View, FlatList, Image, Text } from 'react-native';
 import { FAB, Card, Title, Paragraph } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../styles/styles';
 
-const API_URL = 'http://192.168.20.69:3000';
-
-
+const API_URL = 'http://192.168.20.68:3000'; // certifique-se que está com o IP correto
 
 export default function HomeScreen() {
   const [pets, setPets] = useState([]);
@@ -32,18 +30,36 @@ export default function HomeScreen() {
             <Card.Content>
               <Title>{item.name}</Title>
               <Paragraph>{item.description}</Paragraph>
-              <Paragraph>
+              <Paragraph style={{ color: item.emPerigo ? '#FF5722' : '#4CAF50' }}>
                 {item.emPerigo ? "⚠️ Está em perigo!" : "✅ Não parece em perigo"}
               </Paragraph>
             </Card.Content>
             {item.photo && (
-              <Card.Cover source={{ uri: `${API_URL}/${item.photo}` }} style={styles.image} />
+              <Card.Cover
+                source={{ uri: `${API_URL}/${item.photo}` }}
+                style={styles.image}
+              />
             )}
           </Card>
         )}
       />
-      <FAB icon="plus" style={styles.fab} onPress={() => navigation.navigate('Registrar Animal')} />
-      <FAB icon="map" style={styles.mapButton} onPress={() => navigation.navigate('Mapa')} />
+      <View style={{ position: 'absolute', bottom: 20, left: 20, alignItems: 'center' }}>
+        <FAB
+          icon="map"
+          style={styles.mapButton}
+          onPress={() => navigation.navigate('Mapa')}
+        />
+        <Text style={{ marginTop: 4, fontSize: 16 }}>Ver Mapa</Text>
+      </View>
+
+      <View style={{ position: 'absolute', bottom: 20, right: 20, alignItems: 'center' }}>
+        <FAB
+          icon="plus"
+          style={styles.fab}
+          onPress={() => navigation.navigate('Registrar Animal')}
+        />
+        <Text style={{ marginTop: 4, fontSize: 16 }}>Registrar</Text>
+      </View>
     </View>
   );
 }

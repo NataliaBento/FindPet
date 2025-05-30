@@ -64,4 +64,4 @@ app.post('/pets', upload.single('photo'), async (req, res) => {
   res.json(pet);
 });
 
-app.listen(3000, () => console.log('Backend listening on port 3000'));
+app.listen(3000, '0.0.0.0', () => console.log('Backend listening on port 3000'));
