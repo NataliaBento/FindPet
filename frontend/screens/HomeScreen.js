@@ -4,7 +4,7 @@ import { FAB, Card, Title, Paragraph, Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../styles/styles';
 
-const API_URL = 'http://192.168.20.68:3000'; 
+const API_URL = 'http://192.168.20.67:3000'; 
 
 export default function HomeScreen() {
   const [pets, setPets] = useState([]);
